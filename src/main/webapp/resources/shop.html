@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+	<title>Print X</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	
+	 <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<style>
+		.loadingBar{position:absolute; left:0; top:0;bottom:0;right:0; background: url(images/ajax-loader.gif) no-repeat center center; z-index:9; display:none;}
+	</style>
+ </head>
+ 
+ <body>
+ <div class="loadingBar"> </div>
+	<div class="container">
+	
+	<div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li class="active"><a href="#">Calculator</a></li>
+          <li><a href="#">Admin</a></li>
+        </ul>
+        <h3 class="text-muted">Print Shop</h3>
+    </div>
+		
+		<hr/>
+		<div class="row">
+			<div class="clearfix">
+			</div>
+			<div class="col-sm-10 col-sm-offset-1">	
+				
+				<div class="panel panel-primary">
+				  <div class="panel-heading">
+					<h3 class="panel-title">Print Calculator</h3>
+				  </div>
+				  <div class="panel-body">
+				<div class="row">
+					<div class="col-sm-2"></div>
+						<div class="col-sm-8">
+						<form class="form-horizontal" role="form">
+					
+					  <div class="form-group">
+						<label for="selectCustType" class="col-sm-3 control-label">Customer Type</label>
+						<div class="col-sm-9">
+							<select class="form-control">
+							  <option>Premium</option>
+							  <option>Normal</option>
+							  <option>Printer</option>
+							</select>
+						</div>
+					  </div>
+					  <div class="form-group">
+					  <label for="selectCustType" class="col-sm-3 control-label">Variety</label>
+						<div class="col-sm-9">
+							<label class="radio-inline">
+							  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1"> Paper
+							</label>
+							<label class="radio-inline">
+							  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2"> Sticker
+							</label>
+						</div>
+					  </div>
+					   <div class="form-group" style="display: none;" id="groupPaperType">
+						<label for="selectCustType" class="col-sm-3 control-label">Paper Types</label>
+						<div class="col-sm-9">
+							<select class="form-control" id="selectPaperType">
+							  <option>option1</option>
+							  <option>option2</option>
+							  <option>option3</option>
+							</select>
+						</div>
+					  </div>
+					  <div class="form-group" style="display: none;" id="groupStickerType">
+						<label for="selectCustType" class="col-sm-3 control-label">Sticker Types</label>
+						<div class="col-sm-9">
+							<select class="form-control" id="selectStickerType">
+							  <option>option1</option>
+							  <option>option2</option>
+							  <option>option3</option>
+							</select>
+						</div>
+					  </div>
+					  <div class="form-group">
+						<label for="selectCustType" class="col-sm-3 control-label">Size</label>
+						<div class="col-sm-9">
+							<select class="form-control">
+							  <option>12 x 20</option>
+							  <option>8 x 10</option>
+							  <option>15 x 20</option>
+							</select>
+						</div>
+					  </div>
+					  <div class="form-group">
+						<label for="inputUPS" class="col-sm-3 control-label">Height & Width</label>
+							<ul class="list-unstyled list-inline col-sm-9">
+								<li class="">
+									<input type="email" class="form-control" id="inputWidth" placeholder="Width">
+								</li>
+								<li class="">
+									<input type="email" class="form-control" id="inputHeight" placeholder="Height">
+								</li>
+							</ul>	
+					  </div>
+					  <div class="form-group">
+						<label for="inputUPS" class="col-sm-3 control-label">No. Of UPS</label>
+						<div class="col-sm-9">
+						  <input type="email" class="form-control" id="inputEmail3" placeholder="No. Of UPS">
+						</div>
+					  </div>
+					  <div class="form-group">
+						<label for="inputEmail3" class="col-sm-3 control-label">Quantity</label>
+						<div class="col-sm-9">
+						  <input type="email" class="form-control" id="inputEmail3" placeholder="Quantity">
+						</div>
+					  </div>
+					<div class="form-group">
+						<label for="inputExtras" class="col-sm-3 control-label">Extras</label> 
+						<div class="col-sm-9">
+						<ul class="list-unstyled">
+							<li class="col-sm-6">							
+								<label class="checkbox-inline">
+									<input type="checkbox" id="inlineCheckbox1" value="option1"> Laminations
+								</label>
+							</li>
+							<li class="col-sm-6">
+								<label class="checkbox-inline">
+									<input type="checkbox" id="inlineCheckbox2" value="option2"> Binding
+								</label>
+							</li>
+							<li class="col-sm-6">	
+								<label class="checkbox-inline">
+									<input type="checkbox" id="inlineCheckbox3" value="option3"> Punching
+								</label>
+							</li>	
+							<li class="col-sm-6">	
+								<label class="checkbox-inline">
+									<input type="checkbox" id="inlineCheckbox4" value="option4"> Creasing
+								</label>
+							</li>	
+							<li class="col-sm-6">	
+								<label class="checkbox-inline">
+									<input type="checkbox" id="inlineCheckbox5" value="option5"> Foil Stamping
+								</label>
+							</li>
+							<li class="col-sm-6">	
+								<label class="checkbox-inline">
+									<input type="checkbox" id="inlineCheckbox6" value="option6"> Emboss
+								</label>
+							</li>	
+						</ul>
+						</div>
+					</div>
+					  <div class="form-group">
+						<div class="col-sm-12 text-right">
+						  <button type="submit" class="btn btn-primary">Calculate</button>
+						</div>
+					  </div>
+					</form>
+										
+					<div class="col-xs-12 well">
+						<div class="subtotal-inner left col-xs-6"><strong>Total</strong></div>
+						<div class="subtotal-inner right col-xs-6 text-right" id="subtotalAmt">
+								<strong>£32.60</strong>
+						</div>
+					</div>
+					
+						</div>
+					<div class="col-sm-2"></div>
+				</div>	
+					
+				  </div>
+				</div>
+			</div>
+		</div>
+		
+	<hr/>
+	
+	<div class="footer">
+       <p>&copy; Company 2014</p>
+    </div>
+	</div>
+	
+	 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	
+	<script>
+	$(document).ready(function(){
+		$('#inlineRadio1').on('click',function(){
+			if($(this).is(':checked')){
+				//$('#selectPaperType').removeAttr('disabled');
+				//$('#selectStickerType').attr('disabled','disabled');
+				getVarietyTypes();
+				$('#groupPaperType').show();
+				$('#groupStickerType').hide();
+			}
+		});
+		
+		$('#inlineRadio2').on('click',function(){
+			if($(this).is(':checked')){
+				//$('#selectPaperType').attr('disabled','disabled');
+				//$('#selectStickerType').removeAttr('disabled');
+				getVarietyTypes();
+				$('#groupPaperType').hide();
+				$('#groupStickerType').show();
+			}
+		});
+	});
+	
+	function getVarietyTypes() {
+	$('.loadingBar').show();
+	var res = $.ajax({
+		  url: "http://www.google.com",
+		  context: document.body,
+		  dataType: 'html',
+		  type: 'post',
+		  data: {
+			'username':'hello',
+			'password':'test'
+		  },
+		  beforeSend: function() {
+                                $('#selectPaperType'+' .contentarea').html('<img src="/function-demos/functions/ajax/images/loading.gif" />');
+          }
+		}).done(function() {
+		  $( this ).addClass( "done" );
+		  $('.loadingBar').hide();
+		});
+	};
+	</script>
+	
+ </body>
+ 
+</html>
