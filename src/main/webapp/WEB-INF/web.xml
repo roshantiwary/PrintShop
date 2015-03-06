@@ -11,18 +11,13 @@
 	<param-name>contextConfigLocation</param-name>
 	<param-value>classpath:/META-INF/spring/applicationContext.xml,
 				classpath:/META-INF/spring/infrastructure.xml,
-<<<<<<< HEAD
 				classpath:/META-INF/spring/persistence.xml,
 				classpath:/META-INF/spring/security.xml</param-value>
-=======
-				classpath:/META-INF/spring/persistence.xml</param-value>
->>>>>>> 025a2f473bba330550d96d0f90ab9a3adb085c74
   </context-param>
 
   <listener>
 	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
-<<<<<<< HEAD
   
   <filter>
   	<filter-name>springSecurityFilterChain</filter-name>
@@ -50,10 +45,7 @@
         <error-code>409</error-code>
         <location>/global/sessionExpired.jsp</location>
     </error-page>
- 
-=======
 
->>>>>>> 025a2f473bba330550d96d0f90ab9a3adb085c74
   <servlet>
 	<servlet-name>jboss-as-kitchensink</servlet-name>
 	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>

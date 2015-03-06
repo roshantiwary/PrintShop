@@ -1,9 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<<<<<<< HEAD
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
-=======
->>>>>>> 025a2f473bba330550d96d0f90ab9a3adb085c74
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -35,15 +33,12 @@
         <ul class="nav nav-pills pull-right">
           <li class="active"><a href="/PrintShop">Calculator</a></li>
           <li><a href="admin">Admin</a></li>
-<<<<<<< HEAD
           <c:url var="logoutUrl" value="j_spring_security_logout"/>
          	<sec:authorize access="authenticated">
          		<li>
          			<a href="${logoutUrl}">Log out</a>
          		</li>
          	</sec:authorize>
-=======
->>>>>>> 025a2f473bba330550d96d0f90ab9a3adb085c74
         </ul>
         <h3 class="text-muted"><img src="resources/images/logo.jpg" width="175" height="44"></h3>
     </div>

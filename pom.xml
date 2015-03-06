@@ -204,8 +204,7 @@
         	<artifactId>mongo-java-driver</artifactId>
         	<version>2.12.3</version>
         </dependency>
-<<<<<<< HEAD
-        
+    
          <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -243,9 +242,6 @@
 		    <artifactId>hibernate-validator</artifactId>
 		    <version>5.0.1.Final</version>
 		 </dependency>
-        
-=======
->>>>>>> 025a2f473bba330550d96d0f90ab9a3adb085c74
     </dependencies>
 
     <build>
