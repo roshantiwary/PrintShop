@@ -1,5 +1,5 @@
 #target folder
-target
+target/
 
 #.class files
 *.class
