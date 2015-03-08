@@ -18,7 +18,7 @@ $(document).ready(function(){
 function deleteExtras(extraId) {
 	$('.loadingBar').show();
 	$.ajax({
-		  url: "http://localhost:8080/PrintShop/rest/print/extras/remove/" + extraId + "/",
+		  url: "rest/print/extras/remove/" + extraId + "/",
 		  dataType: 'json',
 		  type: 'POST',
 		  success:function(response){

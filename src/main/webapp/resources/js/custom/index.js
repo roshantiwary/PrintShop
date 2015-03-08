@@ -138,7 +138,7 @@ $(document).ready(function(){
 function getVarietyType(varId) {
 	$('.loadingBar').show();
 	$.ajax({
-		  url: "http://localhost:8080/PrintShop/rest/print/varietytype/get/" + varId,
+		  url: "rest/print/varietytype/get/" + varId,
 		  type: 'GET',
 		  dataType: 'json',
 		  contentType: 'application/json',
@@ -162,7 +162,7 @@ function getVarietyType(varId) {
 function getSizeUp(varTypeId) {
 	$('.loadingBar').show();
 	$.ajax({
-		  url: "http://localhost:8080/PrintShop/rest/print/varietytype/sizeup/" + varTypeId,
+		  url: "rest/print/varietytype/sizeup/" + varTypeId,
 		  type: 'GET',
 		  dataType: 'json',
 		  contentType: 'application/json',
@@ -187,7 +187,7 @@ function getNumberOfUps(numberOfUpJson) {
 	var result = null;
 	$('.loadingBar').show();
 	$.ajax({
-		  url: "http://localhost:8080/PrintShop/rest/print/numberofups/",
+		  url: "rest/print/numberofups/",
 		  type: 'POST',
 		  dataType: 'json',
 		  contentType: 'application/json',
@@ -210,7 +210,7 @@ function getNumberOfUps(numberOfUpJson) {
 function calculatePricing(calcPriceJson) {
 	$('.loadingBar').show();
 	$.ajax({
-		  url: "http://localhost:8080/PrintShop/rest/print/pricing/calculateprice/",
+		  url: "rest/print/pricing/calculateprice/",
 		  type: 'POST',
 		  dataType: 'json',
 		  contentType: 'application/json',

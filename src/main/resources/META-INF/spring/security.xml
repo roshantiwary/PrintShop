@@ -19,6 +19,7 @@
 	<security:intercept-url pattern="/" access="permitAll" />
 	<security:intercept-url pattern="/resources/**" access="permitAll" />
 	<security:intercept-url pattern="/images/**" access="permitAll" />
+	<security:intercept-url pattern="/rest/**" access="permitAll" />
 	<security:intercept-url pattern="/**" access="hasRole('ROLE_USER')" />
 	<security:form-login login-page="/login" authentication-failure-url="/login?error"/>
 	<security:logout logout-success-url="/login?logout"/>

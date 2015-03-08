@@ -42,7 +42,7 @@ $( "#formAddVariety" ).submit(function( event ) {
 	function addVariety(variety) {
 	$('.loadingBar').show();
 	$.ajax({
-		  url: "http://localhost:8080/PrintShop/rest/print/variety/add/" + variety + "/",
+		  url: "rest/print/variety/add/" + variety + "/",
 		  type: 'POST',
 		  success:function(response){
 			  console.log(response);
@@ -59,7 +59,7 @@ $( "#formAddVariety" ).submit(function( event ) {
 	function deleteVariety(varId) {
 		$('.loadingBar').show();
 		$.ajax({
-			  url: "http://localhost:8080/PrintShop/rest/print/variety/remove/" + varId + "/",
+			  url: "rest/print/variety/remove/" + varId + "/",
 			  dataType: 'json',
 			  type: 'POST',
 			  success:function(response){
@@ -77,7 +77,7 @@ $( "#formAddVariety" ).submit(function( event ) {
 		function editVariety(varId, varName) {
 			$('.loadingBar').show();
 			$.ajax({
-				  url: "http://localhost:8080/PrintShop/rest/print/variety/edit/" + varId + "?name=" + varName,
+				  url: "rest/print/variety/edit/" + varId + "?name=" + varName,
 				  type: 'POST',
 				  dataType: 'json',
 				  contentType: 'application/json',

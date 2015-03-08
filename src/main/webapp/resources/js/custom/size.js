@@ -50,7 +50,7 @@ $( "#formAddSize" ).submit(function( event ) {
 	function addSize(size, width, height) {
 	$('.loadingBar').show();
 	$.ajax({
-		  url: "http://localhost:8080/PrintShop/rest/print/sizeup/add/" + "?name=" + size + "&height=" + height + "&width=" + width,
+		  url: "rest/print/sizeup/add/" + "?name=" + size + "&height=" + height + "&width=" + width,
 		  type: 'POST',
 		  success:function(response){
 			  console.log(response);
@@ -67,7 +67,7 @@ $( "#formAddSize" ).submit(function( event ) {
 	function deleteSize(sizeId) {
 		$('.loadingBar').show();
 		$.ajax({
-			  url: "http://localhost:8080/PrintShop/rest/print/sizeup/remove/" + sizeId + "/",
+			  url: "rest/print/sizeup/remove/" + sizeId + "/",
 			  dataType: 'json',
 			  type: 'POST',
 			  success:function(response){
@@ -85,7 +85,7 @@ $( "#formAddSize" ).submit(function( event ) {
 		function editSize(sizeId, name, height, width) {
 			$('.loadingBar').show();
 			$.ajax({
-				  url: "http://localhost:8080/PrintShop/rest/print/sizeup/edit/" + sizeId + "?name=" + name + "&height=" + height + "&width=" + width,
+				  url: "rest/print/sizeup/edit/" + sizeId + "?name=" + name + "&height=" + height + "&width=" + width,
 				  type: 'POST',
 				  dataType: 'json',
 				  contentType: 'application/json',

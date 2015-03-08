@@ -249,7 +249,7 @@
 	function addCustomerType(customer) {
 	$('.loadingBar').show();
 	$.ajax({
-		  url: "http://localhost:8080/PrintShop/rest/print/customertype/add/" + customer + "/",
+		  url: "rest/print/customertype/add/" + customer + "/",
 		  type: 'POST',
 		  success:function(response){
 			  console.log(response);
@@ -266,7 +266,7 @@
 	function deleteCustomerType(customerId) {
 		$('.loadingBar').show();
 		$.ajax({
-			  url: "http://localhost:8080/PrintShop/rest/print/customertype/remove/" + customerId + "/",
+			  url: "rest/print/customertype/remove/" + customerId + "/",
 			  dataType: 'json',
 			  type: 'POST',
 			  success:function(response){
@@ -284,7 +284,7 @@
 		function editCustomerType(customerId, customerName) {
 			$('.loadingBar').show();
 			$.ajax({
-				  url: "http://localhost:8080/PrintShop/rest/print/customertype/edit/" + customerId + "?name=" + customerName,
+				  url: "rest/print/customertype/edit/" + customerId + "?name=" + customerName,
 				  type: 'POST',
 				  dataType: 'json',
 				  contentType: 'application/json',

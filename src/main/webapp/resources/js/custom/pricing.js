@@ -49,7 +49,7 @@ $(document).ready(function(){
 function updatePricing(pricing) {
 	$('.loadingBar').show();
 	$.ajax({
-		  url: "http://localhost:8080/PrintShop/rest/print/pricing/update/",
+		  url: "rest/print/pricing/update/",
 		  type: 'POST',
 		  dataType: 'json',
 		  contentType: 'application/json',
