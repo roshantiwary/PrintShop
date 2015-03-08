@@ -12,8 +12,7 @@
 	</bean>
 
 	<!-- <mongo:db-factory host="localhost" port="27017" dbname="db"/>  -->
-	<mongo:db-factory host="$OPENSHIFT_MONGODB_DB_HOST" port="$OPENSHIFT_MONGODB_DB_PORT" dbname="shop" username="admin" password="xNhwV_ErCkkk"/>
-	
+	<mongo:db-factory host="${env.OPENSHIFT_MONGODB_DB_HOST}" port="${env.OPENSHIFT_MONGODB_DB_PORT}" dbname="shop" username="${env.OPENSHIFT_MONGODB_DB_USERNAME}" password="${env.OPENSHIFT_MONGODB_DB_PASSWORD}"/>
 	
 	<mongo:repositories base-package="com.print.repo" />
 	
