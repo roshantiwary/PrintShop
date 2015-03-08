@@ -31,7 +31,7 @@
 	
 	<div class="header">
         <ul class="nav nav-pills pull-right">
-          <li class="active"><a href="/PrintShop">Calculator</a></li>
+          <li class="active"><a href="/">Calculator</a></li>
           <li><a href="admin">Admin</a></li>
           <c:url var="logoutUrl" value="j_spring_security_logout"/>
          	<sec:authorize access="authenticated">

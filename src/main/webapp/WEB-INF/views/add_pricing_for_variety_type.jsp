@@ -28,7 +28,7 @@
 	
 	<div class="header">
         <ul class="nav nav-pills pull-right">
-          <li><a href="/PrintShop">Calculator</a></li>
+          <li><a href="/">Calculator</a></li>
           <li class="active"><a href="admin">Admin</a></li>
         </ul>
         <h3 class="text-muted"><img src="resources/images/logo.jpg" width="175" height="44"></h3>
