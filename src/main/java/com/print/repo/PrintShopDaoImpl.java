@@ -13,9 +13,11 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Repository;
 
 import com.mongodb.BasicDBObject;
+import com.mongodb.WriteResult;
 import com.print.domain.BasePrice;
 import com.print.domain.CalculatorResult;
 import com.print.domain.CustomerType;
@@ -30,8 +32,11 @@ import com.print.domain.PriceJSONVO;
 import com.print.domain.PricePerSet;
 import com.print.domain.Pricing;
 import com.print.domain.QuantitativePrice;
+import com.print.domain.RegisterForm;
+import com.print.domain.Role;
 import com.print.domain.SelectedExtra;
 import com.print.domain.SizeUp;
+import com.print.domain.UserAccount;
 import com.print.domain.Variety;
 import com.print.domain.VarietyType;
 
@@ -48,6 +53,26 @@ public class PrintShopDaoImpl implements PrintShopDao {
 	 */
 	public void createCustomerType(CustomerType customerType) {
 		mongoTemplate.insert(customerType);
+	}
+	
+	public List<Role> createUserRoles() {
+		List<Role> roleList = mongoTemplate.findAll(Role.class);
+		
+		if(roleList.isEmpty()) {
+			Role userRole = new Role();
+			userRole.setId("ROLE_USER");
+			mongoTemplate.insert(userRole);
+			
+			Role adminRole = new Role();
+			adminRole.setId("ROLE_ADMIN");
+			mongoTemplate.insert(adminRole);
+			
+			Role administratorRole = new Role();
+			administratorRole.setId("ROLE_ADMINISTRATOR");
+			mongoTemplate.insert(administratorRole);
+		}
+		
+		return Collections.unmodifiableList(roleList);
 	}
 	
 	/**
@@ -613,5 +638,88 @@ public class PrintShopDaoImpl implements PrintShopDao {
 		}
 		
 		return extraMap;
+	}
+	
+	public Role getRole(String roleType) {
+		
+		Role role = null;
+		Query roleTypeQuery = new Query();
+		roleTypeQuery.addCriteria(
+                Criteria.where("id").is(roleType));
+		
+		List<Role> roleList = mongoTemplate.find(roleTypeQuery, Role.class);
+		
+		if(!roleList.isEmpty()) {
+			role = roleList.get(0);	
+		}
+		
+		return role;
+	}
+
+	@Override
+	public boolean registerUser(RegisterForm regForm) {
+		// TODO Auto-generated method stub
+		
+		boolean result = false;
+		
+		UserAccount userAccount = new UserAccount();
+		userAccount.setFirstname(regForm.getFirstname());
+		userAccount.setLastname(regForm.getLastname());
+		userAccount.setUsername(regForm.getUsernameid());
+		userAccount.setPassword(regForm.getPasswordid());
+		
+		if(userAccount.getUsername().equals("admin")) {
+			userAccount.addRole(getRole("ROLE_ADMIN"));
+			userAccount.addRole(getRole("ROLE_USER"));
+			userAccount.setEnabled(true);
+		} else if(userAccount.getUsername().equals("superadmin")) {
+			userAccount.addRole(getRole("ROLE_ADMINISTRATOR"));
+			userAccount.addRole(getRole("ROLE_ADMIN"));
+			userAccount.addRole(getRole("ROLE_USER"));
+			userAccount.setEnabled(true);
+		} else {
+			userAccount.addRole(getRole("ROLE_USER"));
+			userAccount.setEnabled(false);
+		}
+		
+		mongoTemplate.insert(userAccount);
+		
+		if(getUser(regForm.getUsernameid()) != null) {
+			result = true;
+		}
+		
+		return result;
+	}
+	
+	public UserAccount getUser(String userName) {
+		UserAccount user = null;
+		
+		Query findUser = new Query();
+		findUser.addCriteria(Criteria.where("username").is(userName));
+		List<UserAccount> userList = mongoTemplate.find(findUser, UserAccount.class);
+		
+		if(!userList.isEmpty()) {
+			user = userList.get(0);
+		}
+		
+		return user;
+	}
+
+	@Override
+	@Secured("ROLE_ADMIN")
+	public List<UserAccount> getAllUsers() {
+		List<UserAccount> userList = mongoTemplate.findAll(UserAccount.class);
+		return userList;
+	}
+
+	@Override
+	@Secured("ROLE_ADMIN")
+	public UserAccount modifyUserStatus(String username, Boolean enabled) {
+		// TODO Auto-generated method stub
+		UserAccount userAcct = getUser(username);
+		Query query = new Query(Criteria.where("id").is(userAcct.getId()));
+		WriteResult result = mongoTemplate.updateFirst(query,Update.update("enabled", enabled),UserAccount.class);
+		
+		return getUser(username);
 	}
 }

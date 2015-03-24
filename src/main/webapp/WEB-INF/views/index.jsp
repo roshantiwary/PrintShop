@@ -44,6 +44,7 @@
     </div>
 		
 		<hr/>
+		
 		<div class="row">
 			<div class="clearfix">
 			</div>

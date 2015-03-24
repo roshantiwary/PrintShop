@@ -5,6 +5,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.web.bind.annotation.AuthenticationPrincipal;
+
 import com.print.domain.CalculatorResult;
 import com.print.domain.CustomerType;
 import com.print.domain.ExtraItemType;
@@ -13,7 +16,10 @@ import com.print.domain.ParentExtraType;
 import com.print.domain.PriceCalcVO;
 import com.print.domain.PriceJSONVO;
 import com.print.domain.Pricing;
+import com.print.domain.RegisterForm;
+import com.print.domain.Role;
 import com.print.domain.SizeUp;
+import com.print.domain.UserAccount;
 import com.print.domain.Variety;
 import com.print.domain.VarietyType;
 
@@ -226,5 +232,37 @@ public interface PrintShopDao {
 	 * @param customerId
 	 */
 	public Map<String, List<ExtraType>> getExtrasForCustomer(String customerType);
+	
+	/**
+	 * creates user roles for users.
+	 * 
+	 */
+	public List<Role> createUserRoles();
+	
+	/**
+	 * creates users.
+	 * 
+	 */
+	public boolean registerUser(RegisterForm regForm);
+	
+	/**
+	 * Get User.
+	 * 
+	 */
+	public UserAccount getUser(String userName);
+	
+	/**
+	 * Get All User.
+	 * 
+	 */
+	@Secured("ROLE_ADMIN")
+	public List<UserAccount> getAllUsers();
+	
+	/**
+	 * modify user status.
+	 * 
+	 */
+	@Secured("ROLE_ADMIN")
+	public UserAccount modifyUserStatus(String username, Boolean enabled);
 	
 }	

@@ -15,11 +15,13 @@ import com.print.domain.Member;
 import com.print.domain.ParentExtraType;
 import com.print.domain.Pricing;
 import com.print.domain.SizeUp;
+import com.print.domain.UserAccount;
 import com.print.domain.Variety;
 import com.print.domain.VarietyType;
 import com.print.repo.PrintShopDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -136,6 +138,16 @@ public class MemberController
     	model.addAttribute("priceList", priceList);
         return "add_pricing_for_variety_type";
     }
+    
+    @Secured("ROLE_ADMIN")
+    @RequestMapping(value="manageusers", method=RequestMethod.GET)
+    public String manageUsers(Model model)
+    {   
+    	List<UserAccount> userList = printShopDao.getAllUsers();
+    	model.addAttribute("userList", userList);
+        return "manageusers";
+    }
+    
     
 //    @RequestMapping(value="customertype",method=RequestMethod.GET)
 //    public String getCustomerType(Model model)

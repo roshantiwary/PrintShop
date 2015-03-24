@@ -46,12 +46,12 @@ $(document).ready(function(){
 		});
 	});
 		
-function updatePricing(username, status) {
+function updatePricing(pricing) {
 	$('.loadingBar').show();
 	$.ajax({
-		  url: "rest/print/admin/update/useraccess",
-		  type: 'PUT',
-		  dataType: 'string',
+		  url: "rest/print/pricing/update/",
+		  type: 'POST',
+		  dataType: 'json',
 		  contentType: 'application/json',
 		  data: pricing,
 		  success:function(response){

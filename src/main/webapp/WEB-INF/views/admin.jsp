@@ -19,7 +19,7 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 	<style>
-		.loadingBar{position:absolute; left:0; top:0;bottom:0;right:0; background: url(images/ajax-loader.gif) no-repeat center center; z-index:9; display:none;}
+		.loadingBar{position:absolute; left:0; top:0;bottom:0;right:0; background: url(resources/images/ajax-loader.gif) no-repeat center center; z-index:9; display:none;}
 	</style>
  </head>
  
@@ -86,6 +86,11 @@
           <h2>Show Post Press</h2>
           <p>All the different types of Post Press can be deleted from this module</p>
           <p><a class="btn btn-primary" href="showextras" role="button">Show Post Press &raquo;</a></p>
+        </div>
+            <div class="col-md-4">
+          <h2>Manage Users Access</h2>
+          <p>Manage User Access</p>
+          <p><a class="btn btn-primary" href="manageusers" role="button">Manage User Access &raquo;</a></p>
         </div>
       </div>	
 	<hr/>

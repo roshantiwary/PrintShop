@@ -27,7 +27,6 @@
  
 <body>
 <c:url value="/login" var="loginUrl" />
-<c:url value="/register" var="registerUrl"/>
 <div class="loadingBar"> </div>
 <div class="container">
 	
@@ -116,7 +115,7 @@
                             <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#loginbox').show()">Sign In</a></div>
                         </div>  
                         <div class="panel-body" >
-                        	<form:form id="signupform" method="post" action="${registerUrl}" modelAttribute="registerForm" class="form-horizontal" role="form">
+                            <form id="signupform" class="form-horizontal" role="form">
                                 
                                 <div id="signupalert" style="display:none" class="alert alert-danger">
                                     <p>Error:</p>
@@ -126,35 +125,35 @@
                                 
                                   
                                 <div class="form-group">
-                                    <label for="usernameid" class="col-md-3 control-label">User Name</label>
+                                    <label for="username" class="col-md-3 control-label">User Name</label>
                                     <div class="col-md-9">
-                                        <form:input type="text" class="form-control" path="usernameid" name="usernameid" placeholder="User Name"/>
+                                        <input type="text" class="form-control" name="username" placeholder="User Name">
                                     </div>
                                 </div>
                                     
                                 <div class="form-group">
                                     <label for="firstname" class="col-md-3 control-label">First Name</label>
                                     <div class="col-md-9">
-                                        <form:input type="text" class="form-control" path="firstname" name="firstname" placeholder="First Name"/>
+                                        <input type="text" class="form-control" name="firstname" placeholder="First Name">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="lastname" class="col-md-3 control-label">Last Name</label>
                                     <div class="col-md-9">
-                                        <form:input type="text" class="form-control" path="lastname" name="lastname" placeholder="Last Name"/>
+                                        <input type="text" class="form-control" name="lastname" placeholder="Last Name">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="passwordid" class="col-md-3 control-label">Password</label>
+                                    <label for="password" class="col-md-3 control-label">Password</label>
                                     <div class="col-md-9">
-                                        <form:input type="password" class="form-control" path="passwordid" name="passwordid" placeholder="Password"/>
+                                        <input type="password" class="form-control" name="passwd" placeholder="Password">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <!-- Button -->                                        
                                     <div class="col-md-offset-3 col-md-9">
-                                        <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
+                                        <button id="btn-signup" type="button" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
                                         <span style="margin-left:8px;">or</span>  
                                     </div>
                                 </div>
@@ -169,7 +168,7 @@
                                 
                                 
                                 
-                            </form:form>
+                            </form>
                          </div>
                     </div>
 

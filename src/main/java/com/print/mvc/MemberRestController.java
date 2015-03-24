@@ -23,6 +23,8 @@ import com.print.domain.Pricing;
 import com.print.domain.QuantitativePrice;
 import com.print.domain.QuantitativePriceVO;
 import com.print.domain.SetPriceVO;
+import com.print.domain.UserAccount;
+import com.print.domain.UserAccountVO;
 import com.print.domain.VarietyTypeJsonVO;
 import com.print.domain.SizeUp;
 import com.print.domain.Variety;
@@ -32,7 +34,9 @@ import com.print.repo.PrintShopDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -370,6 +374,26 @@ public class MemberRestController
     	extraType.setId(extraId);
     	printShopDao.deleteExtraType(extraType);
     	return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
+    }
+    
+//    @Secured("ROLE_ADMIN")
+    @RequestMapping(value="/admin/update/useraccess", method=RequestMethod.PUT, headers={"Content-type=application/json"}, produces="application/json")
+    public @ResponseBody UserAccountVO modifyUserStatus(@RequestBody UserAccountVO userVO) {   
+    	UserAccount result = printShopDao.modifyUserStatus(userVO.getUsername(), userVO.isEnabled());
+    	
+    	UserAccountVO userObj = new UserAccountVO();
+    	userObj.setEnabled(result.getEnabled());
+    	userObj.setUsername(result.getUsername());
+    	userObj.setId(result.getId());
+    	userObj.setRoles(result.getRoles());
+    	
+    	if(result.getEnabled()) {
+    		userObj.setStatusMsg("Enabled");
+    	} else {
+    		userObj.setStatusMsg("Disabled");
+    	}
+    	
+    	return userObj;
     }
     
 //    @RequestMapping(value="/extras/get/{customerType}", method=RequestMethod.POST, produces="application/json")
