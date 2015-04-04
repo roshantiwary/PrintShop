@@ -18,6 +18,7 @@ import com.print.domain.PriceJSONVO;
 import com.print.domain.Pricing;
 import com.print.domain.RegisterForm;
 import com.print.domain.Role;
+import com.print.domain.RoleVO;
 import com.print.domain.SizeUp;
 import com.print.domain.UserAccount;
 import com.print.domain.Variety;
@@ -265,4 +266,17 @@ public interface PrintShopDao {
 	@Secured("ROLE_ADMIN")
 	public UserAccount modifyUserStatus(String username, Boolean enabled);
 	
+	
+	/**
+	 * Change password.
+	 * 
+	 */
+	public UserAccount changePassword(UserAccount user);
+	
+	/**
+	 * modify user roles.
+	 * 
+	 */
+	@Secured("ROLE_ADMINISTRATOR")
+	public UserAccount modifyUserRoles(String username, List<RoleVO> roles);
 }	

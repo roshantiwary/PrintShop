@@ -2,7 +2,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
-
 <!DOCTYPE html>
 <html lang="en">
  <head>
@@ -43,16 +42,27 @@
 
 <sec:authorize access="hasAnyRole('ROLE_ADMINISTRATOR')">
 <div class="table-responsive">
+
   <table class="table table-hover table-bordered">
 	<tr class="info">
-		<td>User Name</td>
-		<td>First Name</td>
-		<td>Last Name</td>
-		<td>Status</td>
-		<td>Action</td>
-		<td>Modify Role</td>
+		<td><strong>User Name</strong></td>
+		<td><strong>First Name</strong></td>
+		<td><strong>Last Name</strong></td>
+		<td><strong>Status</strong></td>
+		<td><strong>Action</strong></td>
+		<td><strong>Modify Role</strong></td>
 	</tr>
 	<c:forEach items="${userList}" var="element"> 
+		<c:set var="adminRole" value="" />
+		<c:set var="superAdminRole" value="" />
+		<c:forEach items="${element.roles}" var="role">
+			<c:if test="${role.id eq 'ROLE_ADMIN'}">
+				<c:set var="adminRole" value="${role.id}" />
+			</c:if>
+			<c:if test="${role.id eq 'ROLE_ADMINISTRATOR'}">
+				<c:set var="superAdminRole" value="${role.id}" />
+			</c:if>
+		</c:forEach>
 		<tr>
 			<td>${element.username}</td>
 			<td>${element.firstname}</td>
@@ -67,6 +77,19 @@
 					<td><button id="${element.username}_changeUserStatus" data-username="${element.username}" data-status="true" type="submit" class="changeUserStatus btn btn-danger">Enable</button></td>
 				</c:otherwise>
 			</c:choose>
+			<td>
+				<c:choose>
+					<c:when test="${not empty adminRole && not empty superAdminRole}">
+						<button id="${element.username}_changeUserRole" data-username="${element.username}" type="submit" class="changeUserRole btn btn-success">Revoke All Admin Rights</button>
+					</c:when>
+					<c:when test="${(not empty adminRole && empty superAdminRole) || (empty adminRole && not empty superAdminRole)}">
+						<button id="${element.username}_changeUserRole" data-username="${element.username}" type="submit" class="changeUserRole btn btn-warning">Revoke Admin Rights</button>
+					</c:when>
+					<c:otherwise>
+						<button id="${element.username}_changeUserRole" data-username="${element.username}" type="submit" class="changeUserRole btn btn-danger">Give Admin Rights</button>
+					</c:otherwise>
+				</c:choose>
+			</td>
 		</tr>
 	</c:forEach>
   </table>
@@ -99,6 +122,38 @@
 		</div>
 	</div>
 </div>	
+
+<div class="modal fade" id="editRole" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				<h4 class="modal-title" id="myModalLabel">Modify Roles for Admin Rights</h4>
+			</div>
+			<form role="form" id="formChangeRole">
+				<div class="modal-body">
+					<input type="hidden" name="eleUsername" value="" id="eleUsernameId"/>
+					<input type="hidden" name="eleRole" value="" id="eleUserRole"/>
+					<div class="checkbox">
+					   <label>
+					     <input type="checkbox" id="roleadmin">admin
+					   </label>
+					</div>
+					<div class="checkbox">
+					   <label>
+					     <input type="checkbox" id="rolesuperadmin">super admin
+					   </label>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="submit" id="btnChangeRole" class="btn btn-primary">Save changes</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>	
+
 
 <div class="footer">
     <p>&copy; Print Shop 2014</p>

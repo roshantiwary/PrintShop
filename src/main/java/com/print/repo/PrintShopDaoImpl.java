@@ -1,5 +1,6 @@
 package com.print.repo;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -34,6 +35,7 @@ import com.print.domain.Pricing;
 import com.print.domain.QuantitativePrice;
 import com.print.domain.RegisterForm;
 import com.print.domain.Role;
+import com.print.domain.RoleVO;
 import com.print.domain.SelectedExtra;
 import com.print.domain.SizeUp;
 import com.print.domain.UserAccount;
@@ -667,6 +669,7 @@ public class PrintShopDaoImpl implements PrintShopDao {
 		userAccount.setLastname(regForm.getLastname());
 		userAccount.setUsername(regForm.getUsernameid());
 		userAccount.setPassword(regForm.getPasswordid());
+		userAccount.setEmail(regForm.getEmail());
 		
 		if(userAccount.getUsername().equals("admin")) {
 			userAccount.addRole(getRole("ROLE_ADMIN"));
@@ -720,6 +723,42 @@ public class PrintShopDaoImpl implements PrintShopDao {
 		Query query = new Query(Criteria.where("id").is(userAcct.getId()));
 		WriteResult result = mongoTemplate.updateFirst(query,Update.update("enabled", enabled),UserAccount.class);
 		
+		return getUser(username);
+	}
+
+	@Override
+	public UserAccount changePassword(UserAccount user) {
+		// TODO Auto-generated method stub
+		Query query = new Query(Criteria.where("id").is(user.getId()));
+		WriteResult result = mongoTemplate.updateFirst(query,Update.update("password", user.getPassword()),UserAccount.class);
+		return getUser(user.getUsername());
+	}
+
+	@Override
+	@Secured("ROLE_ADMINISTRATOR")
+	public UserAccount modifyUserRoles(String username, List<RoleVO> rolesVO) {
+		UserAccount userAcct = getUser(username);
+		List<Role> roles = new ArrayList<Role>();
+		Role userRole = new Role();
+		userRole.setId("ROLE_USER");
+		roles.add(userRole);
+		Iterator<RoleVO> roleVOItr = rolesVO.iterator();
+			while(roleVOItr.hasNext()) {
+				RoleVO roleVO = (RoleVO) roleVOItr.next();
+				if(roleVO.getRoleType().equals("ROLE_ADMIN") && roleVO.isRoleValue()) {
+					Role adminRole = new Role();
+					adminRole.setId("ROLE_ADMIN");
+					roles.add(adminRole);
+				} 
+				if(roleVO.getRoleType().equals("ROLE_ADMINISTRATOR") && roleVO.isRoleValue()) {
+					Role superAdminRole = new Role();
+					superAdminRole.setId("ROLE_ADMINISTRATOR");
+					roles.add(superAdminRole);
+				}
+			}
+		
+		Query query = new Query(Criteria.where("id").is(userAcct.getId()));
+		WriteResult result = mongoTemplate.updateFirst(query,Update.update("roles", roles),UserAccount.class);
 		return getUser(username);
 	}
 }

@@ -17,6 +17,7 @@
 <security:http use-expressions="true">
 	<security:intercept-url pattern="/login" access="permitAll" />
 	<security:intercept-url pattern="/register" access="permitAll" />
+	<security:intercept-url pattern="/changepassword" access="permitAll" />
 	<security:intercept-url pattern="/" access="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_ADMINISTRATOR')" />
 	<security:intercept-url pattern="/resources/**" access="permitAll" />
 	<security:intercept-url pattern="/images/**" access="permitAll" />

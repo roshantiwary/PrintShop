@@ -28,6 +28,7 @@
 <body>
 <c:url value="/login" var="loginUrl" />
 <c:url value="/register" var="registerUrl"/>
+<c:url value="/changepassword" var="changePwdUrl"/>
 <div class="loadingBar"> </div>
 <div class="container">
 	
@@ -45,7 +46,11 @@
             <div class="panel panel-info" >
                     <div class="panel-heading">
                         <div class="panel-title">Sign In</div>
-                        <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div>
+                        <div style="float:right; font-size: 80%; position: relative; top:-10px">
+                        	<a href="#" onClick="$('#loginbox').hide(); $('#signupbox').hide(); $('#changepasswordbox').show();">
+                                 Change password?
+                            </a>
+                        </div>
                     </div>     
 
                     <div style="padding-top:30px" class="panel-body" >
@@ -86,7 +91,7 @@
 
                                     <div class="col-sm-12 controls">
                                       <button type="submit" class="btn btn-default">Login</button>
-                                      <a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>
+                                     <!--  <a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>  -->
 
                                     </div>
                                 </div>
@@ -96,7 +101,7 @@
                                     <div class="col-md-12 control">
                                         <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
                                             Don't have an account! 
-                                        <a href="#" onClick="$('#loginbox').hide(); $('#signupbox').show()">
+                                        <a href="#" onClick="$('#loginbox').hide(); $('#changepasswordbox').hide(); $('#signupbox').show()">
                                             Sign Up Here
                                         </a>
                                         </div>
@@ -145,6 +150,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label for="email" class="col-md-3 control-label">email</label>
+                                    <div class="col-md-9">
+                                        <input type="email" class="form-control" name="email" placeholder="Email">
+                                    </div>
+                                </div> 
+                                <div class="form-group">
                                     <label for="passwordid" class="col-md-3 control-label">Password</label>
                                     <div class="col-md-9">
                                         <form:input type="password" class="form-control" path="passwordid" name="passwordid" placeholder="Password"/>
@@ -155,10 +166,11 @@
                                     <!-- Button -->                                        
                                     <div class="col-md-offset-3 col-md-9">
                                         <button id="btn-signup" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
-                                        <span style="margin-left:8px;">or</span>  
+                                        <!-- <span style="margin-left:8px;">or</span>   -->
                                     </div>
                                 </div>
-                                
+                               
+                               <!--  
                                 <div style="border-top: 1px solid #999; padding-top:20px"  class="form-group">
                                     
                                     <div class="col-md-offset-3 col-md-9">
@@ -166,7 +178,7 @@
                                     </div>                                           
                                         
                                 </div>
-                                
+                                --> 
                                 
                                 
                             </form:form>
@@ -177,6 +189,64 @@
                
                 
          </div> 
+         
+         <div id="changepasswordbox" style="display:none; margin-top:50px" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <div class="panel-title">Sign Up</div>
+                            <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#loginbox').show()">Sign In</a></div>
+                        </div>  
+                        <div class="panel-body" >
+                        	<form:form id="changepwdform" method="post" action="${changePwdUrl}" modelAttribute="changePasswordForm" class="form-horizontal" role="form">
+                                
+                                <div id="signupalert" style="display:none" class="alert alert-danger">
+                                    <p>Error:</p>
+                                    <span></span>
+                                </div>
+                                    
+                                
+                                  
+                                <div class="form-group">
+                                    <label for="usernameid" class="col-md-3 control-label">User Name</label>
+                                    <div class="col-md-9">
+                                        <form:input type="text" class="form-control" path="usernamepwdid" name="usernamepwdid" placeholder="User Name"/>
+                                    </div>
+                                </div>
+                                    
+                                <div class="form-group">
+                                    <label for="firstname" class="col-md-3 control-label">Current Password</label>
+                                    <div class="col-md-9">
+                                        <form:input type="password" class="form-control" path="currentpassword" name="currentpassword" placeholder="Current Password"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastname" class="col-md-3 control-label">New Password</label>
+                                    <div class="col-md-9">
+                                        <form:input type="password" class="form-control" path="newpassword" name="newpassword" placeholder="New Password"/>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="passwordid" class="col-md-3 control-label">Confirm Password</label>
+                                    <div class="col-md-9">
+                                        <form:input type="password" class="form-control" path="confirmpassword" name="confirmpassword" placeholder="Confirm Password"/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <!-- Button -->                                        
+                                    <div class="col-md-offset-3 col-md-9">
+                                        <button id="btn-chg-pwd" type="submit" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Change Password</button>
+                                    </div>
+                                </div>
+                                
+                            </form:form>
+                         </div>
+                    </div>
+
+               
+               
+                
+         </div>
 </div>
 
 <div class="footer">

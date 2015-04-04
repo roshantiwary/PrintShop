@@ -376,7 +376,7 @@ public class MemberRestController
     	return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
     
-//    @Secured("ROLE_ADMIN")
+//  @Secured("ROLE_ADMIN")
     @RequestMapping(value="/admin/update/useraccess", method=RequestMethod.PUT, headers={"Content-type=application/json"}, produces="application/json")
     public @ResponseBody UserAccountVO modifyUserStatus(@RequestBody UserAccountVO userVO) {   
     	UserAccount result = printShopDao.modifyUserStatus(userVO.getUsername(), userVO.isEnabled());
@@ -395,6 +395,33 @@ public class MemberRestController
     	
     	return userObj;
     }
+    
+    @Secured("ROLE_ADMINISTRATOR")
+    @RequestMapping(value="/admin/get/user/roles/{username}", method=RequestMethod.GET, produces="application/json")
+    public @ResponseBody UserAccountVO getUserRoles(@PathVariable("username") String username) {
+    	UserAccount result = printShopDao.getUser(username);
+    	
+    	UserAccountVO userObj = new UserAccountVO();
+    	userObj.setEnabled(result.getEnabled());
+    	userObj.setUsername(result.getUsername());
+    	userObj.setId(result.getId());
+    	userObj.setRoles(result.getRoles());
+    	
+    	return userObj;
+    }
+    
+    @RequestMapping(value="/admin/update/userrole", method=RequestMethod.PUT, headers={"Content-type=application/json"}, produces="application/json")
+    public @ResponseBody UserAccountVO modifyUserRoles(@RequestBody UserAccountVO userVO) {   
+    	UserAccount result = printShopDao.modifyUserRoles(userVO.getUsername(), userVO.getRoleVOList());
+    	UserAccountVO userObj = new UserAccountVO();
+    	userObj.setEnabled(result.getEnabled());
+    	userObj.setUsername(result.getUsername());
+    	userObj.setId(result.getId());
+    	userObj.setRoles(result.getRoles());
+    	
+    	return userObj;
+    }
+  
     
 //    @RequestMapping(value="/extras/get/{customerType}", method=RequestMethod.POST, produces="application/json")
 //    public @ResponseBody ResponseEntity<Boolean> getExtrasForCustomer(@PathVariable("customerType") String customerType)

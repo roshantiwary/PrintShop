@@ -12,6 +12,16 @@ public class UserAccountVO {
 
 	private List<Role> roles = new ArrayList<Role>();
 
+	private List<RoleVO> roleVOList = new ArrayList<RoleVO>();
+	
+	public List<RoleVO> getRoleVOList() {
+		return roleVOList;
+	}
+
+	public void setRoleVOList(List<RoleVO> roleVOList) {
+		this.roleVOList = roleVOList;
+	}
+
 	public String getUsername() {
 		return username;
 	}

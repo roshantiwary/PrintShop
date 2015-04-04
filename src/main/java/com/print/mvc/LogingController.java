@@ -1,6 +1,7 @@
 package com.print.mvc;
 
 import java.io.IOException;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.print.domain.ChangePasswordForm;
 import com.print.domain.LoginForm;
 import com.print.domain.RegisterForm;
 import com.print.domain.Role;
@@ -64,6 +66,11 @@ public class LogingController {
 		return new RegisterForm();
 	}
 	
+	@ModelAttribute("changePasswordForm")
+	public ChangePasswordForm constructChngPwdForm() {
+		return new ChangePasswordForm();
+	}
+	
 //	@RequestMapping(value="/", method=RequestMethod.GET)
 //	public ModelAndView homePage(HttpServletRequest request, HttpServletResponse response){
 //		ModelAndView modView = new ModelAndView();
@@ -98,10 +105,10 @@ public class LogingController {
 			dbUserPwd =  user.getPassword();
 		}
 		
-//		if(encoder.matches(loginForm.getPassword(), dbUserPwd) && user.getEnabled())
-		if(encoder.matches(loginForm.getPassword(), dbUserPwd)) {
+		if(encoder.matches(loginForm.getPassword(), dbUserPwd) && user.getEnabled()) {
 			System.out.println("Login Successful");
-			
+		} else if(!user.getEnabled()){
+			result.reject("login.fail", "User has been locked");
 		} else {
 			result.reject("login.fail", "Bad username or password");
 		}
@@ -110,7 +117,23 @@ public class LogingController {
 			return "login";
 		}
 		
-		Role role = user.getRoles().get(0);
+		Role role = null;
+		Iterator<Role> roleItr = user.getRoles().iterator();
+		while(roleItr.hasNext()) {
+			Role nxtRole = roleItr.next();
+			if(nxtRole.getId().equals("ROLE_ADMINISTRATOR")) {
+				role = nxtRole;
+				break;
+			}
+			if(nxtRole.getId().equals("ROLE_ADMIN")) {
+				role = nxtRole;
+			}
+		}		
+		
+		if(role == null) {
+			role = new Role();
+			role.setId("ROLE_USER");
+		}
 		
 		//authenticate user
 		Authentication authentication = new UsernamePasswordAuthenticationToken(j_username, j_password, AuthorityUtils.createAuthorityList(role.getId()));
@@ -120,11 +143,59 @@ public class LogingController {
     }
 	
 	@RequestMapping(value="changepassword", method=RequestMethod.POST)
-	public String changePassword(String pwd) {
+	public String changePassword(@Valid @ModelAttribute("changePasswordForm")ChangePasswordForm changePwdForm, BindingResult result,
+    		HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 		
-		BCryptPasswordEncoder pwdEncoder = new BCryptPasswordEncoder();
-		pwdEncoder.encode(pwd);
-		return null;
+		String dbUserPwd = null;
+		UserAccount user = printShopDao.getUser(changePwdForm.getUsernamepwdid());
+		
+		if(changePwdForm.getConfirmpassword().equals(changePwdForm.getNewpassword())) {
+			if(user != null) {
+				dbUserPwd =  user.getPassword();
+			}
+			if(encoder.matches(changePwdForm.getCurrentpassword(), dbUserPwd)) {
+				user.setPassword(encoder.encode(changePwdForm.getNewpassword()));
+				user = printShopDao.changePassword(user);
+			} else {
+				result.reject("Change password failed", "Invalid old password");
+			}
+			
+		} else {
+			result.reject("Change password failed", "Both old and new passwords should match");
+		}
+		
+		user = printShopDao.getUser(changePwdForm.getUsernamepwdid());
+		if(!encoder.matches(changePwdForm.getNewpassword(), user.getPassword())) {
+			result.reject("Change password failed", "Oops something went wrong!!");
+		}
+		
+		if(result.hasErrors()) {
+			return "change_pwd";
+		}
+		
+		Role role = null;
+		Iterator<Role> roleItr = user.getRoles().iterator();
+		while(roleItr.hasNext()) {
+			Role nxtRole = roleItr.next();
+			if(nxtRole.getId().equals("ROLE_ADMINISTRATOR")) {
+				role = nxtRole;
+				break;
+			}
+			if(nxtRole.getId().equals("ROLE_ADMIN")) {
+				role = nxtRole;
+			}
+		}		
+		
+		if(role == null) {
+			role = new Role();
+			role.setId("ROLE_USER");
+		}
+		
+		//authenticate user
+		Authentication authentication = new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword(), AuthorityUtils.createAuthorityList(role.getId()));
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		successHandler.onAuthenticationSuccess(request, response, authentication);
+        return "index";
 	}
 	
 //	@RequestMapping(value="register", method=RequestMethod.GET)
