@@ -45,13 +45,13 @@ $(document).ready(function(){
 			updatePricing(jsonpricing);
 		});
 	});
-		
-function updatePricing(username, status) {
+
+function updatePricing(pricing) {
 	$('.loadingBar').show();
 	$.ajax({
-		  url: "rest/print/admin/update/useraccess",
-		  type: 'PUT',
-		  dataType: 'string',
+		  url: "http://localhost:8080/PrintShop/rest/print/pricing/update/",
+		  type: 'POST',
+		  dataType: 'json',
 		  contentType: 'application/json',
 		  data: pricing,
 		  success:function(response){
@@ -65,3 +65,23 @@ function updatePricing(username, status) {
 		  }
 		});
 	};
+		
+//function updatePricing(pricing) {
+//	$('.loadingBar').show();
+//	$.ajax({
+//		  url: "rest/print/admin/update/useraccess",
+//		  type: 'PUT',
+//		  dataType: 'string',
+//		  contentType: 'application/json',
+//		  data: pricing,
+//		  success:function(response){
+//			  console.log(response);
+//			  $('.loadingBar').hide();
+//			  window.location.reload(true);
+//		  },
+//		  error:function(xhr,status){
+//			  console.log('Some error occured');
+//			  $('.loadingBar').hide();
+//		  }
+//		});
+//	};
