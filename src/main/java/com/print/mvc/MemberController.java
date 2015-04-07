@@ -139,7 +139,7 @@ public class MemberController
         return "add_pricing_for_variety_type";
     }
     
-    @Secured("ROLE_ADMIN")
+    @Secured("ROLE_ADMINISTRATOR")
     @RequestMapping(value="manageusers", method=RequestMethod.GET)
     public String manageUsers(Model model)
     {   
