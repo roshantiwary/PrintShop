@@ -180,7 +180,7 @@
 	<hr/>
 	
 	<div class="footer">
-       <p>&copy; Print Shop 2014</p>
+       <p>&copy; Print Shop 2015</p>
     </div>
 	</div>
 	
