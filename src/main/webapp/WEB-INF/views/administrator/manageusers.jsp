@@ -35,7 +35,7 @@
        <ul class="nav nav-pills pull-right">
          <li><a href="${pageContext.request.contextPath}/">Calculator</a></li>
          <li class="active"><a href="${pageContext.request.contextPath}/admin/admin">Admin</a></li>
-         <c:url var="logoutUrl" value="${pageContext.request.contextPath}/j_spring_security_logout"/>
+         <c:url var="logoutUrl" value="/j_spring_security_logout"/>
          	<sec:authorize access="authenticated">
          		<li>
          			<a href="${pageContext.request.contextPath}/${logoutUrl}">Log out</a>

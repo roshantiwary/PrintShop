@@ -33,7 +33,7 @@
         <ul class="nav nav-pills pull-right">
           <li class="active"><a href="${pageContext.request.contextPath}/">Calculator</a></li>
           <li><a href="${pageContext.request.contextPath}/admin/admin">Admin</a></li>
-          <c:url var="logoutUrl" value="${pageContext.request.contextPath}/j_spring_security_logout"/>
+          <c:url var="logoutUrl" value="/j_spring_security_logout"/>
          	<sec:authorize access="authenticated">
          		<li>
          			<a href="${pageContext.request.contextPath}/${logoutUrl}">Log out</a>
@@ -192,7 +192,7 @@
 	<hr/>
 	
 	<div class="footer">
-       <p>&copy; Print Shop 2015</p>
+       <p>&copy; Print Shop 2014</p>
     </div>
 	</div>
 	
