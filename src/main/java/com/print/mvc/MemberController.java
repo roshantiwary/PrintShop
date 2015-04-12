@@ -61,23 +61,23 @@ public class MemberController
         return "index";
     }
    
-    @RequestMapping(value="addcustomertype", method=RequestMethod.GET)
+    @RequestMapping(value="/admin/addcustomertype", method=RequestMethod.GET)
     public String displayCustomerPage(Model model)
     {   
     	List<CustomerType> customers = printShopDao.getAllCustomerTypes();
     	model.addAttribute("customers", customers);
-        return "add_customertype";
+        return "admin/add_customertype";
     }
     
-    @RequestMapping(value="addvariety", method=RequestMethod.GET)
+    @RequestMapping(value="/admin/addvariety", method=RequestMethod.GET)
     public String displayAddVarietyPage(Model model)
     {   
     	List<Variety> varietyList = printShopDao.getAllVarietys();
     	model.addAttribute("varietyList", varietyList);
-        return "add_variety";
+        return "admin/add_variety";
     }
     
-    @RequestMapping(value="addvarietytype", method=RequestMethod.GET)
+    @RequestMapping(value="/admin/addvarietytype", method=RequestMethod.GET)
     public String displayAddVarietytypePage(Model model)
     {   
     	List<VarietyType> varietyTypeList = printShopDao.getAllVarietyTypes();
@@ -89,18 +89,18 @@ public class MemberController
     	List<Variety> varietyList = printShopDao.getAllVarietys();
     	model.addAttribute("varietyList", varietyList);
     	
-        return "add_variety_type";
+        return "admin/add_variety_type";
     }
     
-    @RequestMapping(value="addsize", method=RequestMethod.GET)
+    @RequestMapping(value="/admin/addsize", method=RequestMethod.GET)
     public String displayAddSizePage(Model model)
     {   
     	List<SizeUp> sizeUpList = printShopDao.getSizeUps();
     	model.addAttribute("sizeUpList", sizeUpList);
-        return "add_size";
+        return "admin/add_size";
     }
     
-    @RequestMapping(value="addextras", method=RequestMethod.GET)
+    @RequestMapping(value="/admin/addextras", method=RequestMethod.GET)
     public String displayAddExtraPage(Model model)
     {   
     	List<CustomerType> customers =  printShopDao.getAllCustomerTypes();
@@ -112,40 +112,39 @@ public class MemberController
     	List<ExtraItemType> extraItemList = printShopDao.getAllExtraItemTypes();
     	model.addAttribute("extraItemList", extraItemList);
     	
-        return "add_extras";
+        return "admin/add_extras";
     }
     
-    @RequestMapping(value="showextras", method=RequestMethod.GET)
+    @RequestMapping(value="/admin/showextras", method=RequestMethod.GET)
     public String showExtraPage(Model model)
     {   
     	
     	List<ExtraType> extraList = printShopDao.getAllExtraTypes();
     	model.addAttribute("extraList", extraList);
     	
-        return "show_extras";
+        return "admin/show_extras";
     }
     
-    @RequestMapping(value="admin", method=RequestMethod.GET)
+    @RequestMapping(value="admin/admin", method=RequestMethod.GET)
     public String displayAdminPage(Model model)
     {   
-        return "admin";
+        return "admin/admin";
     }
     
-    @RequestMapping(value="addpricing", method=RequestMethod.GET)
+    @RequestMapping(value="admin/addpricing", method=RequestMethod.GET)
     public String displayPricingPage(Model model)
     {   
     	List<Pricing> priceList = printShopDao.getPriceList();
     	model.addAttribute("priceList", priceList);
-        return "add_pricing_for_variety_type";
+        return "admin/add_pricing_for_variety_type";
     }
     
-    @Secured("ROLE_ADMINISTRATOR")
-    @RequestMapping(value="manageusers", method=RequestMethod.GET)
+    @RequestMapping(value="administrator/manageusers", method=RequestMethod.GET)
     public String manageUsers(Model model)
     {   
     	List<UserAccount> userList = printShopDao.getAllUsers();
     	model.addAttribute("userList", userList);
-        return "manageusers";
+        return "administrator/manageusers";
     }
     
     

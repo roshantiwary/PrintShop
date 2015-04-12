@@ -51,7 +51,7 @@ function addExtras(priceTypeId) {
 		if(makeCall == true) {
 		$('.loadingBar').show();
 		$.ajax({
-			  url: "rest/print/extras/baseprice/",
+			  url: "../rest/print/extras/baseprice/",
 			  type: 'POST',
 			  dataType: 'json',
 			  contentType: 'application/json',
@@ -119,7 +119,7 @@ function addExtras(priceTypeId) {
 		if(makeCall == true) {
 		$('.loadingBar').show();
 		$.ajax({
-			  url: "rest/print/extras/qtyprice/",
+			  url: "../rest/print/extras/qtyprice/",
 			  type: 'POST',
 			  dataType: 'json',
 			  contentType: 'application/json',
@@ -177,7 +177,7 @@ function addExtras(priceTypeId) {
 		if(makeCall == true) {
 		$('.loadingBar').show();
 		$.ajax({
-			  url: "rest/print/extras/persetprice/",
+			  url: "../rest/print/extras/persetprice/",
 			  type: 'POST',
 			  dataType: 'json',
 			  contentType: 'application/json',
@@ -245,7 +245,7 @@ function addExtras(priceTypeId) {
 		if(makeCall == true) {
 		$('.loadingBar').show();
 		$.ajax({
-			  url: "rest/print/extras/multiprice/",
+			  url: "../rest/print/extras/multiprice/",
 			  type: 'POST',
 			  dataType: 'json',
 			  contentType: 'application/json',

@@ -18,11 +18,12 @@
 	<security:intercept-url pattern="/login" access="permitAll" />
 	<security:intercept-url pattern="/register" access="permitAll" />
 	<security:intercept-url pattern="/changepassword" access="permitAll" />
-	<security:intercept-url pattern="/" access="hasAnyRole('ROLE_USER','ROLE_ADMIN','ROLE_ADMINISTRATOR')" />
+	<security:intercept-url pattern="/" access="permitAll" />
 	<security:intercept-url pattern="/resources/**" access="permitAll" />
 	<security:intercept-url pattern="/images/**" access="permitAll" />
 	<security:intercept-url pattern="/rest/**" access="permitAll" />
-	<security:intercept-url pattern="/**" access="hasAnyRole('ROLE_ADMIN','ROLE_ADMINISTRATOR')" />
+	<security:intercept-url pattern="/administrator/**" access="hasRole('ROLE_ADMINISTRATOR')" />
+	<security:intercept-url pattern="/admin/**" access="hasAnyRole('ROLE_ADMIN','ROLE_ADMINISTRATOR')" />
 	<security:form-login login-page="/login" authentication-failure-url="/login?error"/>
 	<security:logout logout-success-url="/login?logout"/>
 </security:http>
@@ -41,7 +42,5 @@
 <bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
 	<constructor-arg name="strength" value="12" />
 </bean>
-
-<bean class="com.print.security.CustomMongoSecurityService" id="authService"/>
 
 </beans>		

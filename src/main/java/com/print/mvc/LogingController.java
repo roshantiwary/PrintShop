@@ -213,7 +213,7 @@ public class LogingController {
 		boolean success = printShopDao.registerUser(registerForm);
 		
 		if(success) {
-			return "admin";
+			return "admin/admin";
 		}
 		
 		return "login";

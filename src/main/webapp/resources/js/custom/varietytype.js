@@ -62,7 +62,7 @@ $(document).ready(function(){
 	function addVariety(sizeUp) {
 	$('.loadingBar').show();
 	$.ajax({
-		  url: "rest/print/varietytype/add/",
+		  url: "../rest/print/varietytype/add/",
 		  type: 'POST',
 		  dataType: 'json',
 		  contentType: 'application/json',
@@ -82,7 +82,7 @@ $(document).ready(function(){
 	function deleteVariety(varId) {
 		$('.loadingBar').show();
 		$.ajax({
-			  url: "rest/print/varietytype/remove/" + varId + "/",
+			  url: "../rest/print/varietytype/remove/" + varId + "/",
 			  dataType: 'json',
 			  type: 'POST',
 			  success:function(response){
@@ -100,7 +100,7 @@ $(document).ready(function(){
 		function editVariety(varId, varName) {
 			$('.loadingBar').show();
 			$.ajax({
-				  url: "rest/print/varietytype/edit/" + varId + "?name=" + varName,
+				  url: "../rest/print/varietytype/edit/" + varId + "?name=" + varName,
 				  type: 'POST',
 				  dataType: 'json',
 				  contentType: 'application/json',

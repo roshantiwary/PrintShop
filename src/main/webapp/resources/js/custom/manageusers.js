@@ -74,7 +74,7 @@ $(document).ready(function(){
 function updateUserStatus(jsonUser) {
 	$('.loadingBar').show();
 	$.ajax({
-		  url: "rest/print/admin/update/useraccess",
+		  url: "../rest/print/admin/update/useraccess",
 		  type: 'PUT',
 		  dataType: 'json',
 		  contentType: 'application/json',
@@ -111,7 +111,7 @@ function updateUserStatus(jsonUser) {
 	function updateUserRole(jsonUser) {
 		$('.loadingBar').show();
 		$.ajax({
-			  url: "rest/print/admin/update/userrole",
+			  url: "../rest/print/admin/update/userrole",
 			  type: 'PUT',
 			  dataType: 'json',
 			  contentType: 'application/json',
@@ -149,7 +149,7 @@ function updateUserStatus(jsonUser) {
 	function getUserRoles(username) {
 		$('.loadingBar').show();
 		$.ajax({
-			  url: "rest/print/admin/get/user/roles/" + username,
+			  url: "../rest/print/admin/get/user/roles/" + username,
 			  type: 'GET',
 			  dataType: 'json',
 			  contentType: 'application/json',

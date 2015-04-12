@@ -69,7 +69,7 @@ function updatePricing(pricing) {
 //function updatePricing(pricing) {
 //	$('.loadingBar').show();
 //	$.ajax({
-//		  url: "rest/print/admin/update/useraccess",
+//		  url: "../rest/print/admin/update/useraccess",
 //		  type: 'PUT',
 //		  dataType: 'string',
 //		  contentType: 'application/json',

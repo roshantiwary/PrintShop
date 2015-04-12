@@ -57,7 +57,8 @@ public class MemberRestController
     	List<CustomerType> customers =  printShopDao.getAllCustomerTypes();
     	return customers;
     }
-
+    
+    @Secured({"ROLE_ADMINISTRATOR","ROLE_ADMIN"})
     @RequestMapping(value="/customertype/add/{customer}", method=RequestMethod.POST, produces="application/json")
     public @ResponseBody ResponseEntity<Boolean> createCustomerType(@PathVariable("customer") String customer)
     {
@@ -68,6 +69,7 @@ public class MemberRestController
         return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
     
+    @Secured({"ROLE_ADMINISTRATOR","ROLE_ADMIN"})
     @RequestMapping(value="/customertype/remove/{customerId}", method=RequestMethod.POST, produces="application/json")
     public @ResponseBody ResponseEntity deleteCustomerType(@PathVariable("customerId") String customerId)
     {
@@ -77,6 +79,7 @@ public class MemberRestController
     	return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
     
+    @Secured({"ROLE_ADMINISTRATOR","ROLE_ADMIN"})
     @RequestMapping(value="/customertype/edit/{customerId}", method=RequestMethod.POST, produces="application/json")
     public @ResponseBody ResponseEntity editCustomerType(@PathVariable("customerId") String customerId, @RequestParam("name") String name)
     {
@@ -92,6 +95,7 @@ public class MemberRestController
     	return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
     
+    @Secured({"ROLE_ADMINISTRATOR","ROLE_ADMIN"})
     @RequestMapping(value="/variety/add/{variety}", method=RequestMethod.POST, produces="application/json")
     public @ResponseBody ResponseEntity<Boolean> createVariety(@PathVariable("variety") String variety)
     {
@@ -102,6 +106,7 @@ public class MemberRestController
         return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
     
+    @Secured({"ROLE_ADMINISTRATOR","ROLE_ADMIN"})
     @RequestMapping(value="/variety/remove/{varietyId}", method=RequestMethod.POST, produces="application/json")
     public @ResponseBody ResponseEntity deletevariety(@PathVariable("varietyId") String varietyId)
     {
@@ -111,6 +116,7 @@ public class MemberRestController
     	return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
     
+    @Secured({"ROLE_ADMINISTRATOR","ROLE_ADMIN"})
     @RequestMapping(value="/variety/edit/{varietyId}", method=RequestMethod.POST, produces="application/json")
     public @ResponseBody ResponseEntity editVariety(@PathVariable("varietyId") String varietyId, @RequestParam("name") String name)
     {
@@ -126,6 +132,7 @@ public class MemberRestController
     	return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_ADMINISTRATOR","ROLE_ADMIN"})
     @RequestMapping(value="/varietytype/add/", method=RequestMethod.POST, headers={"Content-type=application/json"}, produces="application/json")
     public @ResponseBody ResponseEntity<Boolean> createVarietyType(@RequestBody VarietyTypeJsonVO sizeVO)
     {
@@ -167,6 +174,7 @@ public class MemberRestController
     	}
 	}
     
+	@Secured({"ROLE_ADMINISTRATOR","ROLE_ADMIN"})
     @RequestMapping(value="/varietytype/remove/{varietyId}", method=RequestMethod.POST, produces="application/json")
     public @ResponseBody ResponseEntity deletevarietyType(@PathVariable("varietyId") String varietyId)
     {
@@ -176,6 +184,7 @@ public class MemberRestController
     	return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
     
+	@Secured({"ROLE_ADMINISTRATOR","ROLE_ADMIN"})
     @RequestMapping(value="/varietytype/edit/{varietyId}", method=RequestMethod.POST, produces="application/json")
     public @ResponseBody ResponseEntity editVarietyType(@PathVariable("varietyTypeId") String varietyTypeId, @RequestParam("name") String name,
     		@RequestParam("varietyId") String varId, @RequestParam("sizeId") String sizeId)
@@ -208,6 +217,7 @@ public class MemberRestController
     	return varTypeList;
     }
     
+    @Secured({"ROLE_ADMINISTRATOR","ROLE_ADMIN"})
     @RequestMapping(value="/sizeup/add", method=RequestMethod.POST, produces="application/json")
     public @ResponseBody ResponseEntity<Boolean> createSizeUp(@RequestParam("name") String name,
     		@RequestParam("height") double height, @RequestParam("width") double width)
@@ -223,6 +233,7 @@ public class MemberRestController
         return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
     
+    @Secured({"ROLE_ADMINISTRATOR","ROLE_ADMIN"})
     @RequestMapping(value="/sizeup/remove/{sizeId}", method=RequestMethod.POST, produces="application/json")
     public @ResponseBody ResponseEntity deleteSizeUp(@PathVariable("sizeId") String sizeId)
     {
@@ -232,6 +243,7 @@ public class MemberRestController
     	return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
     
+    @Secured({"ROLE_ADMINISTRATOR","ROLE_ADMIN"})
     @RequestMapping(value="/sizeup/edit/{sizeId}", method=RequestMethod.POST, produces="application/json")
     public @ResponseBody ResponseEntity editSizeUp(@PathVariable("sizeId") String sizeId, @RequestParam("name") String name,
     		@RequestParam("height") double height, @RequestParam("width") double width)
@@ -270,6 +282,7 @@ public class MemberRestController
     	return noOfUps;
     }
     
+    @Secured({"ROLE_ADMINISTRATOR","ROLE_ADMIN"})
     @RequestMapping(value="/pricing/update/", method=RequestMethod.POST, headers={"Content-type=application/json"}, produces="application/json")
     public @ResponseBody ResponseEntity<Boolean> updatePricing(@RequestBody PriceJSONVO priceVO)
     {
@@ -286,6 +299,7 @@ public class MemberRestController
         return calcPrice;
     }
     
+    @Secured({"ROLE_ADMINISTRATOR","ROLE_ADMIN"})
     @RequestMapping(value="/extras/baseprice/", method=RequestMethod.POST, headers={"Content-type=application/json"}, produces="application/json")
     public @ResponseBody ResponseEntity<Boolean> createBasePricing(@RequestBody BasePriceVO basePriceVO)
     {
@@ -305,6 +319,7 @@ public class MemberRestController
         return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
     
+    @Secured({"ROLE_ADMINISTRATOR","ROLE_ADMIN"})
     @RequestMapping(value="/extras/multiprice/", method=RequestMethod.POST, headers={"Content-type=application/json"}, produces="application/json")
     public @ResponseBody ResponseEntity<Boolean> createMultiPricing(@RequestBody MultiPriceVO multiPriceVO)
     {
@@ -326,6 +341,7 @@ public class MemberRestController
         return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
     
+    @Secured({"ROLE_ADMINISTRATOR","ROLE_ADMIN"})
     @RequestMapping(value="/extras/qtyprice/", method=RequestMethod.POST, headers={"Content-type=application/json"}, produces="application/json")
     public @ResponseBody ResponseEntity<Boolean> createQuantitativePricing(@RequestBody QuantitativePriceVO qtyPriceVO)
     {
@@ -347,6 +363,7 @@ public class MemberRestController
         return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
     
+    @Secured({"ROLE_ADMINISTRATOR","ROLE_ADMIN"})
     @RequestMapping(value="/extras/persetprice/", method=RequestMethod.POST, headers={"Content-type=application/json"}, produces="application/json")
     public @ResponseBody ResponseEntity<Boolean> createPricePerSet(@RequestBody SetPriceVO setPriceVO)
     {
@@ -367,6 +384,7 @@ public class MemberRestController
         return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
     
+    @Secured({"ROLE_ADMINISTRATOR","ROLE_ADMIN"})
     @RequestMapping(value="/extras/remove/{extraId}", method=RequestMethod.POST, produces="application/json")
     public @ResponseBody ResponseEntity<Boolean> deleteExtra(@PathVariable("extraId") String extraId)
     {
@@ -376,7 +394,7 @@ public class MemberRestController
     	return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
     }
     
-//  @Secured("ROLE_ADMIN")
+    @Secured("ROLE_ADMINISTRATOR")
     @RequestMapping(value="/admin/update/useraccess", method=RequestMethod.PUT, headers={"Content-type=application/json"}, produces="application/json")
     public @ResponseBody UserAccountVO modifyUserStatus(@RequestBody UserAccountVO userVO) {   
     	UserAccount result = printShopDao.modifyUserStatus(userVO.getUsername(), userVO.isEnabled());
@@ -410,6 +428,7 @@ public class MemberRestController
     	return userObj;
     }
     
+    @Secured("ROLE_ADMINISTRATOR")
     @RequestMapping(value="/admin/update/userrole", method=RequestMethod.PUT, headers={"Content-type=application/json"}, produces="application/json")
     public @ResponseBody UserAccountVO modifyUserRoles(@RequestBody UserAccountVO userVO) {   
     	UserAccount result = printShopDao.modifyUserRoles(userVO.getUsername(), userVO.getRoleVOList());
@@ -421,12 +440,4 @@ public class MemberRestController
     	
     	return userObj;
     }
-  
-    
-//    @RequestMapping(value="/extras/get/{customerType}", method=RequestMethod.POST, produces="application/json")
-//    public @ResponseBody ResponseEntity<Boolean> getExtrasForCustomer(@PathVariable("customerType") String customerType)
-//    {
-//    	printShopDao.getExtrasForCustomer(customerType);
-//    	return new ResponseEntity<Boolean>(Boolean.TRUE, HttpStatus.OK);
-//    }
 }

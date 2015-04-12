@@ -11,8 +11,8 @@
 		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory"/>
 	</bean>
 
-	<!-- <mongo:db-factory host="localhost" port="27017" dbname="db"/> -->
-	<mongo:db-factory host="#{systemEnvironment[OPENSHIFT_MONGODB_DB_HOST]}" port="#{systemEnvironment[OPENSHIFT_MONGODB_DB_PORT]}" dbname="shop" username="#{systemEnvironment[OPENSHIFT_MONGODB_DB_USERNAME]}" password="#{systemEnvironment[OPENSHIFT_MONGODB_DB_PASSWORD]}"/>
+	<mongo:db-factory host="localhost" port="27017" dbname="db"/>
+	<!-- <mongo:db-factory host="#{systemEnvironment[OPENSHIFT_MONGODB_DB_HOST]}" port="#{systemEnvironment[OPENSHIFT_MONGODB_DB_PORT]}" dbname="shop" username="#{systemEnvironment[OPENSHIFT_MONGODB_DB_USERNAME]}" password="#{systemEnvironment[OPENSHIFT_MONGODB_DB_PASSWORD]}"/>  -->
 	
 	<mongo:repositories base-package="com.print.repo" />
 	

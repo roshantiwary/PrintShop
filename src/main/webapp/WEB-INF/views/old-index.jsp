@@ -6,13 +6,13 @@
 	<head>
 		<title>Spring MVC Starter Application</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<link rel="stylesheet" type="text/css" href="<c:url value="/static/resources/css/screen.css"/>"/>
+		<link rel="stylesheet" type="text/css" href="<c:url value="${pageContext.request.contextPath}/resources/css/screen.css"/>"/>
 	</head>
 
-	<body>
+	<body><c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 		<div id="container">
 			<div class="dualbrand">
-				<img src="<c:url value="/static/resources/gfx/dualbrand_logo.png"/>"/>
+				<img src="<c:url value="/static${pageContext.request.contextPath}/resources/gfx/dualbrand_logo.png"/>"/>
 			</div>
 			<div id="content">
 				<h1>Welcome to JBoss!</h1>
@@ -20,7 +20,7 @@
 				<div>
 					<p>You have successfully deployed a Spring MVC web application.</p>
 					<h3>Your application can run on:</h3>
-					<img src="<c:url value="/static/resources/gfx/dualbrand_as7eap.png"/>"/>
+					<img src="<c:url value="/static${pageContext.request.contextPath}/resources/gfx/dualbrand_as7eap.png"/>"/>
 				</div>
 
 				<form:form commandName="newMember" id="reg">
@@ -77,14 +77,14 @@
 										<td>${member.name}</td>
 										<td>${member.email}</td>
 										<td>${member.phoneNumber}</td>
-										<td><a href="<c:url value="/rest/members/${member.id}"/>">/rest/members/${member.id}</a></td>
+										<td><a href="${pageContext.request.contextPath}/<c:url value="/rest/members/${member.id}"/>">/rest/members/${member.id}</a></td>
 								</c:forEach>
 							</tbody>
 						</table>
 						<table class="simpletablestyle">
 							<tr>
 								<td>
-									REST URL for all members: <a href="<c:url value="/rest/members"/>">/rest/members</a>
+									REST URL for all members: <a href="${pageContext.request.contextPath}/<c:url value="/rest/members"/>">/rest/members</a>
 								</td>
 							</tr>
 						</table>
@@ -96,13 +96,13 @@
 				<ul>
 					<li><a
 						href="http://red.ht/jbeap-6-docs">Documentation</a></li>
-					<li><a href="http://red.ht/jbeap-6">Product Information</a></li>
+					<li><a href="${pageContext.request.contextPath}/http://red.ht/jbeap-6">Product Information</a></li>
 				</ul>
 				<p>Learn more about JBoss AS 7.</p>
 				<ul>
 					<li><a
 						href="https://docs.jboss.org/author/display/AS7/Getting+Started+Developing+Applications+Guide">Getting Started Developing Applications Guide</a></li>
-					<li><a href="http://jboss.org/jbossas">Community Project Information</a></li>
+					<li><a href="${pageContext.request.contextPath}/http://jboss.org/jbossas">Community Project Information</a></li>
 				</ul>
 			</div>
 			<div id="footer">
